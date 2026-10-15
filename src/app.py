@@ -52,6 +52,18 @@ activities = {
         "max_participants": 15,
         "participants": ["mia@mergington.edu"]
     },
+    "Track and Field": {
+        "description": "Train for track and field events and improve athletic skills",
+        "schedule": "Tuesdays and Fridays, 3:30 PM - 5:00 PM",
+        "max_participants": 20,
+        "participants": []
+    },
+    "Volleyball Club": {
+        "description": "Practice volleyball skills and compete in school matches",
+        "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 16,
+        "participants": []
+    },
     # Artísticas
     "Drama Club": {
         "description": "Act, direct, and produce school plays and performances",
@@ -65,6 +77,18 @@ activities = {
         "max_participants": 16,
         "participants": ["ava@mergington.edu"]
     },
+    "Choir": {
+        "description": "Sing in a group and perform at school events",
+        "schedule": "Mondays, 3:30 PM - 5:00 PM",
+        "max_participants": 24,
+        "participants": []
+    },
+    "Photography Club": {
+        "description": "Learn photography techniques and share creative projects",
+        "schedule": "Thursdays, 3:30 PM - 5:00 PM",
+        "max_participants": 15,
+        "participants": []
+    },
     # Intelectuais
     "Math Olympiad": {
         "description": "Prepare for math competitions and solve challenging problems",
@@ -77,6 +101,18 @@ activities = {
         "schedule": "Wednesdays, 3:30 PM - 5:00 PM",
         "max_participants": 14,
         "participants": ["isabella@mergington.edu"]
+    },
+    "Debate Club": {
+        "description": "Develop public speaking skills and debate current topics",
+        "schedule": "Mondays, 3:30 PM - 5:00 PM",
+        "max_participants": 18,
+        "participants": []
+    },
+    "Robotics Club": {
+        "description": "Design, build, and program robots together",
+        "schedule": "Tuesdays, 3:30 PM - 5:00 PM",
+        "max_participants": 12,
+        "participants": []
     }
 }
 
@@ -100,6 +136,10 @@ def signup_for_activity(activity_name: str, email: str):
 
     # Get the specificy activity
     activity = activities[activity_name]
+
+    # Validar se o aluno já está inscrito
+    if email in activity["participants"]:
+        raise HTTPException(status_code=400, detail="Student already signed up for this activity")
 
     # Validar se o aluno já está inscrito
     if email in activity["participants"]:
